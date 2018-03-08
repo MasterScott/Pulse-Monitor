@@ -5,6 +5,8 @@ A client + server tool to to log and rectify communication problems.
 
 The Heartbeat computer (server or client--doesn't matter) delivers messages to a file on the Monitor computer via SSH. The Monitor checks the file and executes remedial action if conditions are met. Server and client can fill either role assuming a VPN or reverse SSH tunnel exist. Frequency, timeout, and remedial actions are all configurable.
 
+NOTE: Pulse-Monitor is designed to take a specific action when the Monitor system loses touch with the Heartbeat system. An alternate use, however, is to install only the Heartbeat role. This essentially builds a logging system in which the Monitor system (with no Pulse-Monitor components installed) has a log file that is updated regularly by the Heartbeat system, per arguments supplied to ./install-heartbeat.sh. In this setup, no logic is performed on any missed heartbeats, so the Monitor system takes no action. It does make for a handy heartbeat/connectivity logging tool, though.
+
 
 Install
 -------------------------------------------------------------------------------
