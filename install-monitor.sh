@@ -72,10 +72,11 @@ TIMEOUT="$3"
 ########################################################################## SCRIPT
 # PREP
 # Install moreutils - Includes timestamp (ts)
-apt-get update
-apt-get install -y moreutils
+cp ~/Pulse-Monitor/ts /usr/bin/ts
+chmod +x /usr/bin/ts
 
 # Make monitor.sh executable in case it isn't
+cd ~/Pulse-Monitor
 chmod +x monitor.sh
 
 # Create name for temporary cronfile

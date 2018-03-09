@@ -76,8 +76,8 @@ FILE="$6"
 ########################################################################## SCRIPT
 # PREP
 # Install moreutils - Includes timestamp (ts)
-apt-get update
-apt-get install -y moreutils
+cp ~/Pulse-Monitor/ts /usr/bin/ts
+chmod +x /usr/bin/ts
 
 # Create name for temporary cronfile
 CRONFILE="`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8`"
