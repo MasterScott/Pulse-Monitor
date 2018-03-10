@@ -65,6 +65,9 @@ then
   exit 1
 fi
 
+echo "${BrBlue}[*] Beginning heartbeat installation.${NC}"
+
+
 FREQ="$1"
  KEY="$2"
 USER="$3"
@@ -73,17 +76,26 @@ PORT="$5"
 FILE="$6"
  MSG="From `hostname`: $7"
 
+echo "${BrBlue}[*] Set variables by arguments.${NC}"
+
+
 ########################################################################## SCRIPT
 # PREP
 # Install moreutils - Includes timestamp (ts)
 cp ~/Pulse-Monitor/ts /usr/bin/ts
+echo "${BrBlue}[*] Copied custom timestamp file ~/Pulse-Monitor/ts to /usr/bin/ts.${NC}"
 chmod +x /usr/bin/ts
+echo "${BrBlue}[*] Made /usr/bin/ts executable.${NC}"
+
 
 # Create name for temporary cronfile
 CRONFILE="`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8`"
+echo "${BrBlue}[*] Temporary cronfile: $CRONFILE.${NC}"
 
 # Create cron line
 CRONLINE="*/$FREQ * * * *  /usr/bin/ssh -i $KEY $USER@$IP -p $PORT echo `ts '[\%Y-\%^b-\%d \%H:\%M:\%S \%Z]'` $MSG >> $FILE 2>&1"
+echo "${BrBlue}[*] Line to be added to crontab: $CRONLINE.${NC}"
+
 
 
 

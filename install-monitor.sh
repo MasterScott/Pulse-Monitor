@@ -64,10 +64,16 @@ then
   exit 1
 fi
 
+echo "${BrBlue}[*] Beginning monitor installation.${NC}"
+
+
    FREQ="$1"
    FILE="$2"
 TIMEOUT="$3"
  ACTION="$4"
+
+ echo "${BrBlue}[*] Set variables by arguments.${NC}"
+
 
 ########################################################################## SCRIPT
 # PREP
