@@ -92,8 +92,10 @@ echo "${BrBlue}[*] Made /usr/bin/ts executable.${NC}"
 CRONFILE="`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8`"
 echo "${BrBlue}[*] Temporary cronfile: $CRONFILE.${NC}"
 
-# Create cron line
-CRONLINE="*/$FREQ * * * *  /usr/bin/ssh -i $KEY $USER@$IP -p $PORT echo `ts '[\%Y-\%^b-\%d \%H:\%M:\%S \%Z]'` $MSG >> $FILE 2>&1"
+# Create cron line ################################################### ERROR NEXT LINE
+CRONLINE1="*/$FREQ * * * *  /usr/bin/ssh -i $KEY $USER@$IP -p $PORT echo "
+CRONLINE2='$(ts '[\%Y-\%^b-\%d \%H:\%M:\%S \%Z]')'
+CRONLINE3=" $MSG >> $FILE 2>&1"
 echo "${BrBlue}[*] Line to be added to crontab: $CRONLINE.${NC}"
 
 
@@ -105,7 +107,9 @@ crontab -l                                                       > /tmp/$CRONFIL
 echo "${BrBlue}[*] Copied crontab to /tmp/$CRONFILE.${NC}"
 
 # Add line to temporary crontab
-echo "$CRONLINE"                                                >> /tmp/$CRONFILE
+echo -n "$CRONLINE1"                                            >> /tmp/$CRONFILE
+echo -n '$(ts '[\%Y-\%^b-\%d \%H:\%M:\%S \%Z]')'                >> /tmp/$CRONFILE
+echo    "$CRONLINE3"                                            >> /tmp/$CRONFILE
 echo "${BrBlue}[*] Added to temporary crontab: $CRONLINE${NC}"
 
 # Load temporary crontab file into actual crontab
