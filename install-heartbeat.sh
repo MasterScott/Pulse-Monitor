@@ -93,7 +93,7 @@ CRONFILE="`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8`"
 echo "${BrBlue}[*] Temporary cronfile: $CRONFILE.${NC}"
 
 # Create cron line ################################################### ERROR NEXT LINE
-CRONLINE="*/$FREQ * * * *  /usr/bin/ssh -i $KEY $USER@$IP -p $PORT echo \"$MSG\" | ts '[\%Y-\%^b-\%d \%H:\%M:\%S \%Z]' >> $FILE 2>&1"
+CRONLINE="*/$FREQ * * * *  /usr/bin/ssh -i $KEY $USER@$IP -p $PORT \" echo $MSG | ts '[\%Y-\%^b-\%d \%H:\%M:\%S \%Z]' >> $FILE 2>&1\""
 echo "${BrBlue}[*] Line to be added to crontab: $CRONLINE.${NC}"
 
 
